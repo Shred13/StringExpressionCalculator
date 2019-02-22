@@ -26,7 +26,7 @@ int match(const char *string, const char *pattern)
 
 
 int main() {
-    const char* re = "[ ]*[0-9]+[ ]*[+|-|*|/][ ]*[0-9]+[ ]*";
+    const char* re = "[0-9]+[+|-|*|/][0-9]+";
     char str[50];
     printf("Enter the ion string or 0 (zero) to quit:\n");
     scanf("%[^\n]s", str);
@@ -60,7 +60,7 @@ int main() {
             }
             //todo do strtol for both calc1 and calc2 and then do the thing about plus
             //minus and so forth
-            //symbol should now equal exactly what the symbol is. 
+            //symbol should now equal exactly what the symbol is.
         }
 
     }
