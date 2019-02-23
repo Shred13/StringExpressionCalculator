@@ -27,15 +27,16 @@ int match(const char *string, const char *pattern)
 
 int main() {
     const char* re = "[0-9]+[+|-|*|/][0-9]+";
-    char str[50];
-    printf("Enter the ion string or 0 (zero) to quit:\n");
+    char str[100];
+    printf("Enter the expression string or 0 (zero) to quit:\n");
     scanf("%[^\n]s", str);
     trim(str);
-    printf(str);
     if (strcmp(str, "0")==0){
         printf("Quitting, bye");
         exit(0);
     }
+    //TODO TAKE A LOOK FOR A NEGATIVE SIGN AND FIND OUT ABOUT REGEX NEGATIVE
+    //todo also find out why it seems to get a value in mind for recursive tings.
     else{
         if(!match(str, re)){
             printf("Please enter your expression in the following order:(Operand Operator Operand), please try again.\n");
@@ -43,24 +44,42 @@ int main() {
         else{
             int i = 0;
             int index =0;
-            int symbol = 0;
-            char calc1[50];
-            char calc2[50];
+            char calc1[101];
+            char calc2[101];
             while(str[i]!='+' && str[i]!='-'&& str[i]!='/'&& str[i]!='*'){
                 calc1[index]=str[i];
                 index++;
-                symbol++;
                 i++;
                 }
             index =0;
+            calc1[100] = (char) "\0";
+            char symbol = str[i];
+            i++;
             while(str[i] != '\0'){
                 calc2[index] = str[i];
                 index++;
                 i++;
             }
-            //todo do strtol for both calc1 and calc2 and then do the thing about plus
-            //minus and so forth
-            //symbol should now equal exactly what the symbol is.
+
+            int equation1 = atoi(calc1);
+            int equation2 = atoi(calc2);
+            int answer = 0;
+            if (symbol == '+'){
+               answer = equation1+equation2;
+            }
+            else if (symbol == '-'){
+                answer = equation1-equation2;
+            }
+            else if (symbol == '*'){
+                answer = equation1*equation2;
+            }
+            else if (symbol == '/'){
+                answer = equation1/equation2;
+            }
+            printf("%i", answer);
+            printf("\n");
+
+            main();
         }
 
     }
