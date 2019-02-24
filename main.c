@@ -26,8 +26,9 @@ int match(const char *string, const char *pattern)
 
 
 int main() {
-    const char* re = "[0-9]+[+|-|*|/][0-9]+";
-    char str[100];
+    const char* re = "[0-9]+[+|*|/|-][0-9]+";
+    char str[100]="";
+    printf("%s",str);
     printf("Enter the expression string or 0 (zero) to quit:\n");
     scanf("%[^\n]s", str);
     trim(str);
@@ -36,7 +37,7 @@ int main() {
         exit(0);
     }
     //TODO TAKE A LOOK FOR A NEGATIVE SIGN AND FIND OUT ABOUT REGEX NEGATIVE
-    //todo also find out why it seems to get a value in mind for recursive tings.
+    //reuse while loop with current ideas maybe?
     else{
         if(!match(str, re)){
             printf("Please enter your expression in the following order:(Operand Operator Operand), please try again.\n");
