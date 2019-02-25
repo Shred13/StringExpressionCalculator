@@ -28,9 +28,9 @@ int match(const char *string, const char *pattern)
 int main() {
     const char* re = "[0-9]+[+|*|/|-][0-9]+";
     char str[100]="";
-    printf("%s",str);
+
     printf("Enter the expression string or 0 (zero) to quit:\n");
-    scanf("%[^\n]s", str);
+    gets(str);
     trim(str);
     if (strcmp(str, "0")==0){
         printf("Quitting, bye");
@@ -41,6 +41,7 @@ int main() {
     else{
         if(!match(str, re)){
             printf("Please enter your expression in the following order:(Operand Operator Operand), please try again.\n");
+            main();
         }
         else{
             int i = 0;
@@ -80,7 +81,7 @@ int main() {
             printf("%i", answer);
             printf("\n");
 
-            main();
+            main(); //todo try while loop again
         }
 
     }
